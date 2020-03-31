@@ -10,8 +10,10 @@ const m2 = document.querySelector('#m2')
 weatherForm.addEventListener('submit',(event)=>
 {
     event.preventDefault()
+    console.log('Search pressed')
     m1.textContent = 'Loading..'
-    const location=search.value
+    m2.textContent =''
+    const location= search.value
     fetch('/weather?address='+ encodeURIComponent(location)+'').then((response)=>{
         response.json().then((data)=>{
             if(data.error){
@@ -20,6 +22,8 @@ weatherForm.addEventListener('submit',(event)=>
             else{
                 m1.textContent = data.location
                 m2.textContent = data.foreCast
+                console.log(data.location)
+                console.log(data.foreCast)
             }
         })
     })
